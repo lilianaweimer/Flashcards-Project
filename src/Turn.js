@@ -4,8 +4,24 @@ class Turn {
     this.card = card;
   }
 
-  returnGuess(guess) {
+  returnGuess() {
     return this.guess;
+  }
+
+  returnCard() {
+    return this.card;
+  }
+
+  evaluateGuess() {
+    return this.guess === this.card['correctAnswer'];
+  }
+
+  giveFeedback() {
+    if (this.guess === this.card['correctAnswer']) {
+      return 'Correct!';
+    } else {
+      return 'Incorrect!';
+    }
   }
 }
 
