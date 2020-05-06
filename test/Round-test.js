@@ -67,7 +67,7 @@ describe('Round', function() {
     expect(round.returnCurrentCard()).to.equal(testDeck.cards[1])
   });
 
-  it('should evaluate if a guess is correct', function() {
+  it('should add incorrect guesses to an incorrectGuesses array', function() {
     const round = new Round(testDeck);
 
     round.takeTurn('pug');
@@ -81,12 +81,20 @@ describe('Round', function() {
   it('should provide feedback about whether a guess was correct', function() {
     const round = new Round(testDeck);
 
-    round.takeTurn('pug');
     expect(round.takeTurn('pug')).to.equal('Incorrect!');
-    round.takeTurn('gallbladder');
     expect(round.takeTurn('gallbladder')).to.equal('Correct!');
-    round.takeTurn('listening to music');
     expect(round.takeTurn('listening to music')).to.equal('Incorrect!');
+  });
+
+  it('should calculate the percent of correct answers', function() {
+    const round = new Round(testDeck);
+
+    round.takeTurn('pug');
+    expect(round.percentCorrect()).to.equal(0);
+    round.takeTurn('gallbladder');
+    expect(round.percentCorrect()).to.equal(50);
+    round.takeTurn('listening to music');
+    expect(round.percentCorrect()).to.equal((1 / 3) * 100);
   });
 
 });

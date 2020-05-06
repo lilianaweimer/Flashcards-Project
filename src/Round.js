@@ -15,15 +15,29 @@ class Round {
 
   takeTurn(guess) {
     this.currentTurn = new Turn(guess, this.deck[this.currentCard]);
-    switch (this.currentTurn.evaluateGuess()) {
-      case (false):
-        this.incorrectGuesses.push(this.deck[this.currentCard].id);
-      case (true):
-        console.log(this.currentTurn.giveFeedback())
-        this.turns++;
-        this.currentCard++;
+    var guessCorrectness = this.currentTurn.evaluateGuess();
+    var feedback;
+
+    if (guessCorrectness === true) {
+      feedback = this.currentTurn.giveFeedback();
+      this.turns++;
+      this.currentCard++;
+    } else {
+      feedback = this.currentTurn.giveFeedback();
+      this.incorrectGuesses.push(this.deck[this.currentCard].id);
+      this.turns++;
+      this.currentCard++;
     }
+
+    return feedback;
   }
+
+  percentCorrect() {
+    let numberCorrect = this.turns - this.incorrectGuesses.length;
+
+    return (numberCorrect === 0) ? 0 : (numberCorrect / this.turns) * 100;
+  }
+
 }
 
 module.exports = Round;
