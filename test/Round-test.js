@@ -97,4 +97,13 @@ describe('Round', function() {
     expect(round.percentCorrect()).to.equal((1 / 3) * 100);
   });
 
+  it('should end the round when the last card has been guessed', function() {
+    const round = new Round(testDeck);
+
+    round.takeTurn('pug');
+    round.takeTurn('gallbladder');
+    round.takeTurn('listening to music');
+    expect(round.endRound()).to.equal(`** Round over! ** You answered ${round.percentCorrect()}% of the questions correctly!`);
+  });
+
 });

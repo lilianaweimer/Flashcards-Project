@@ -22,6 +22,8 @@ class Round {
       feedback = this.currentTurn.giveFeedback();
       this.turns++;
       this.currentCard++;
+    } else if (this.currentCard === undefined) {
+      endRound();
     } else {
       feedback = this.currentTurn.giveFeedback();
       this.incorrectGuesses.push(this.deck[this.currentCard].id);
@@ -36,6 +38,10 @@ class Round {
     let numberCorrect = this.turns - this.incorrectGuesses.length;
 
     return (numberCorrect === 0) ? 0 : (numberCorrect / this.turns) * 100;
+  }
+
+  endRound() {
+      return `** Round over! ** You answered ${this.percentCorrect()}% of the questions correctly!`
   }
 
 }
