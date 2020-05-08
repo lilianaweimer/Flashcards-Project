@@ -27,3 +27,4 @@ To install:
 To run:
 - While in the `Flashcards` directory (in the console), enter `node index.js`
 - Use arrow keys and enter to play!
+- To start a new round, enter `control^ + C` (on Mac) and re-enter `node index.js`
