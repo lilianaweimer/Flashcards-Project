@@ -103,7 +103,7 @@ describe('Round', function() {
     round.takeTurn('pug');
     round.takeTurn('gallbladder');
     round.takeTurn('listening to music');
-    expect(round.endRound()).to.equal(`** Round over! ** You answered ${round.percentCorrect()}% of the questions correctly!`);
+    expect(round.endRound()).to.equal(console.log(`** Round over! ** You answered ${round.percentCorrect()}% of the questions correctly!`));
   });
 
 });
